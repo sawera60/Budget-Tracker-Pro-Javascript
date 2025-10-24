@@ -1,16 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budget Tracker-Pro</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    
 
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <button>Light-Mode</button>
+            <h1>Budget Tracker Pro </h1>
+            <div class="pop-up">
+                <!-- popup for transaction added goes here through js -->
+            </div>
+        </div>
+
+        <div class="middle">
+            <div class="income-box">
+                <h2>Income</h2>
+                <!-- income user enters goes here through js -->
+                
+            </div>
+            <div class="expense-box">
+                <h2>Expense</h2>
+                  <!-- expense  goes here through js -->
+            
+            </div>
+            <div class="balance-box">
+                <h2>Balance</h2>
+                 <!-- total balance is updated here through js -->
+
+            </div>
+        </div>
+
+        <div class="bottom">
+
+            <div class="left-section">
+                <h3>Add Transaction</h3>
+                <form action="">
+                    <label for="type">Type</label><br>
+                    <div class="type-options">
+                        <button class="type-btn active" id="income">Income</button>
+                        <button class="type-btn" id="expense">Expense</button>
+                    </div>
+                    <label for="description">Description</label><br>
+                    <input type="text" placeholder="e.g Food" class="description"><br>
+                    <label for="amount">Amount</label><img src="images/flag.png" alt="" width="20px" height="20px"><br>
+                    <input type="number" class="amount" placeholder="5000"> <br>
+                    <label for="date">Date</label><br>
+                    <input type="date"><br>
+
+                    <label for="category">Choose a Category</label> <br>
+                    <select id="select-category" name="category">
+                        <option value="food" selected>General</option>
+                        <option value="grocery">Grocery</option>
+                        <option value="rent">Rent</option>
+                        <option value="bills" selected>Food</option>
+                        <option value="health" selected>Health</option>
+                        <option value="electronics">Electronics</option>
+                    </select> <br>
+
+                    <button class="addbtn"> + Add Transaction</button>
+                </form>
+            </div>
+            <div class="right-section">
+                <div class="upper">
+                    <h4>Transaction</h4>
+                    <div class="btn">
+                        <select id="select-transaction" name="transaction">
+                            <option value="transaction" selected>All Transaction</option>
+                            <option value="forincome">Income</option>
+                            <option value="forexpense">Expense</option>
+                        </select>
+
+                        <select id="select-category-transaction" name="transaction">
+                            <option value="transaction" selected>By Category</option>
+                            <option value="food">General</option>
+                            <option value="grocery">Grocery</option>
+                            <option value="rent">Rent</option>
+                            <option value="bills">Food</option>
+                            <option value="health">Health</option>
+                            <option value="electronics">Electronics</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="lower">
+                  <!-- all the transaction details will go here through js -->
+                </div>
+
+
+            </div>
+        </div>
+    </div>
 
 
     <script src="script.js"></script>
 </body>
+
 </html>
