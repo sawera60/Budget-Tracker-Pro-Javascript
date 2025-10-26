@@ -1,105 +1,272 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif; /* Applied font */
 }
 
 html,
 body {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.container {
-  height: 100%;
-  width: 80%;
-  /* border: 2px solid red; */
-  margin: 1rem;
-}
-.header {
-  height: 15%;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  /* margin: .5rem; */
+.container {
+    height: 100%;
+    width: 80%;
+    /* border: 2px solid red; */
+    margin: 1rem;
+}
+
+.header {
+    height: 12%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* margin: .5rem; */
+}
+
+.toast {
+    /* Basic toast styles for visibility */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 200px;
+    height: 50px;
+    background-color: #28a745;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 100;
 }
 
 .middle {
-  height: 25%;
-  /* border: 2px solid blue; */
-  display: flex;
-  margin: 0.5rem;
-  gap: 20px;
+    height: 17%;
+    /* border: 2px solid blue; */
+    display: flex;
+    margin: 0.5rem;
+    gap: 20px;
 }
+
+.header h1 {
+    color: #e77742;
+}
+
+h2 {
+    font-weight: 700;
+}
+
 .middle .income-box {
-  border-left: 5px solid rgb(5, 119, 5);
-  border-right: 2px solid rgb(235, 238, 240);
-  /* background-color: rgb(126, 190, 126); */
-  border-radius: 5%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    border-right: 2px solid rgb(235, 238, 240);
+    /* background-color: rgb(126, 190, 126); */
+    border-radius: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgb(45, 212, 45);
 }
+
 .middle .expense-box {
-  border-left: 5px solid rgb(197, 48, 22);
-  border-right: 2px solid rgb(235, 238, 240);
-  /* background-color: rgba(224, 85, 85, 0.836); */
-  border-radius: 5%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    border-right: 2px solid rgb(235, 238, 240);
+    box-shadow: 0 4px 8px rgba(248, 76, 76, 0.5);
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
+
 .middle .balance-box {
-  border: 2px solid rgb(230, 146, 38);
-  border-right: 2px solid rgb(235, 238, 240);
-  background: linear-gradient(45deg, #eb5e1d, #e28c64);
-  width: 100%;
-  border-radius: 5%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    border: 2px solid rgb(230, 146, 38);
+    border-right: 2px solid rgb(235, 238, 240);
+    background: #eb5e1d;
+    /* background-color: #4a91c4; */
+    width: 100%;
+    border-radius: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.income-box:hover {
+    background-color: rgb(101, 161, 10);
+    color: white;
+}
+
+.expense-box:hover {
+    background-color: rgba(190, 39, 12, 0.993);
+    color: white;
 }
 
 .bottom {
-  height: 55%;
-  /* border: 2px solid rgb(109, 224, 86); */
-  margin: 0.5rem;
-  display: flex;
-  gap: 10px;
+    height: 67%;
+    /* border: 2px solid rgb(109, 224, 86); */
+    margin: 0.5rem;
+    display: flex;
+    gap: 10px;
 }
 
 .bottom .left-section {
-  width: 40%;
-  height: 100%;
-  border: none;
-  border-radius: 3%;
-  border: 2px solid rgb(235, 238, 240);
+    width: 40%;
+    height: 100%;
+    border: none;
+    border-radius: 3%;
+    border: 2px solid rgb(235, 238, 240);
 }
+
+.bottom .left-section .left-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem;
+}
+
+.bottom .left-section .left-container .labels {
+    padding-bottom: 2rem;
+    font-size: 15px;
+}
+
+.bottom .left-section .left-container .type-options {
+    display: flex;
+}
+
+.bottom .left-section .left-container .type-btn {
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 0.2rem;
+    border: 2px solid rgb(235, 238, 240);
+    padding: 10px;
+    width: 45%;
+    height: 100%;
+    margin-bottom: 0.5rem;
+}
+
+/* FIX 1: Increased specificity for the active button background color */
+.bottom .left-section .left-container .type-options .type-btn.active {
+    background-color: beige;
+    color: black;
+    border: 1px solid #ccc;
+}
+
+.bottom .left-section .left-container input {
+    width: 90%;
+    height: 100%;
+    padding: 0.3rem;
+    margin-bottom: 0.5rem;
+    border: 2px solid rgb(235, 238, 240);
+}
+
+.bottom .left-section .left-container .addbtn {
+    background-color: #e77742;
+    color: white;
+    border: none;
+    border-radius: 0.2rem;
+    padding: 10px;
+    width: 50%;
+    height: 100%;
+    margin-top: 0.7rem;
+    width: 90%;
+    font-weight: 600;
+}
+
+.selectors {
+    padding: 6px;
+    border: 2px solid rgb(235, 238, 240);
+    font-weight: 600;
+}
+
+.selectors1 {
+    padding: 4px;
+    border: 2px solid rgb(235, 238, 240);
+    width: 90%;
+}
+
 .bottom .right-section {
-  width: 60%;
-  height: 100%;
-  border: none;
-  border-radius: 3%;
-  border: 2px solid rgb(235, 238, 240);
+    width: 60%;
+    height: 100%;
+    border: none;
+    border-radius: 3%;
+    border: 2px solid rgb(235, 238, 240);
+}
+
+.labels {
+    font-weight: 600;
 }
 
 .bottom .right-section .upper {
-  margin: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .bottom .right-section .lower {
-  width: 100%;
-  height: 80%;
-  border: 2px solid black;
+    width: 100%;
+    height: 80%;
+    overflow-y: auto; /* Added for scroll functionality */
+    padding: 0 10px;
+}
+
+
+/* --- FIX 2 & 3: Transaction Card Styling --- */
+
+/* Base style for the card container */
+.transaction-card {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the h4 containing the amount/type */
+.transaction-card h4 {
+    font-size: 1.1em;
+    font-weight: 700;
+    margin: 0 0 5px 0;
+    padding: 5px;
+    color: white; /* Text color is white */
+    border-radius: 3px;
+    display: inline-block; /* Makes the background shrink to fit content */
+}
+
+/* Specific background color for Income h4 */
+.transaction-card h4.income {
+    background-color: #28a745; /* Darker Green */
+}
+
+/* Specific background color for Expense h4 */
+.transaction-card h4.expense {
+    background-color: #dc3545; /* Darker Red */
+}
+
+/* Style for the transaction type text within the h4 (to separate it slightly) */
+.transaction-card .type-text {
+    font-size: 0.9em;
+    font-weight: 400;
+}
+
+/* Style for the description and category */
+.transaction-card p {
+    font-size: 0.9em;
+    margin: 3px 0;
+    color: #333;
+}
+
+/* Style for the date */
+.transaction-card small {
+    font-size: 0.7em;
+    color: #555;
 }
