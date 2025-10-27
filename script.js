@@ -20,8 +20,7 @@ const form = document.querySelector("form");
 form.addEventListener("submit", (e) => e.preventDefault());
 
 let transactionType = "income"; // default
-
-// ✅ Toggle between income and expense button
+// Toggle between income and expense button
 typeIncomeBtn.addEventListener("click", (e) => {
     e.preventDefault();
     transactionType = "income";
@@ -36,7 +35,7 @@ typeExpenseBtn.addEventListener("click", (e) => {
     typeIncomeBtn.classList.remove("active");
 });
 
-// ✅ Toast Notification
+// Toast Notification
 function toastNotification() {
     let toast = document.createElement("div");
     toast.classList.add("toast");
@@ -51,38 +50,36 @@ function toastNotification() {
 let totalIncome = 0;
 let totalExpense = 0;
 
-// ✅ Transaction Details Function
+// ✅ Store transactions here
+let transactions = [];
+
+// Transaction Details Function
 function transactionDetailsfunc() {
     const descValue = descriptionInput.value.trim();
-    // Ensure amount is a number, defaulting to 0 if input is invalid
-    const amountValue = parseFloat(amountInput.value) || 0; 
+    const amountValue = Math.round(parseFloat(amountInput.value)) || 0;
     const dateValue = dateInput.value;
     const categoryValue = chooseCategory.value;
 
-    // Validation
     if (!descValue || amountValue <= 0 || !dateValue) {
         alert("Please enter a description, a valid amount greater than 0, and a date!");
         return;
     }
 
-    // Create card and insert transaction details
+    // Create card
     let card = document.createElement("div");
     card.classList.add("transaction-card");
-
-   
     card.innerHTML = `
         <h4 class="${transactionType}">
-            Rs.${amountValue.toFixed(2)} 
+            Rs.${Math.round(amountValue.toFixed(2))} 
             <span class="type-text">(${transactionType === "income" ? "+ Income" : "- Expense"})</span>
         </h4>
         <p>${descValue} | ${categoryValue.charAt(0).toUpperCase() + categoryValue.slice(1)}</p>
         <small>${dateValue}</small>
     `;
 
-    // Apply color ONLY to the card's border and general background
     card.style.borderLeft = transactionType === "income" ? "4px solid green" : "4px solid red";
-    card.style.backgroundColor = transactionType === "income" ? "#f0fff0" : "#fff0f0"; // Lighter shades
-    transactionDetails.prepend(card); // Use prepend to show the latest transaction first
+    card.style.backgroundColor = transactionType === "income" ? "#f0fff0" : "#fff0f0";
+    transactionDetails.prepend(card);
 
     // Update totals
     if (transactionType === "income") {
@@ -93,23 +90,76 @@ function transactionDetailsfunc() {
 
     const balance = totalIncome - totalExpense;
 
-    // Update UI
     incomeValue.textContent = `Rs.${totalIncome.toFixed(2)}`;
     expenseValue.textContent = `Rs.${totalExpense.toFixed(2)}`;
     balanceValue.textContent = `Rs.${balance.toFixed(2)}`;
+
+    // ✅ Push to array so that we can use this array to filter out the category 
+    transactions.push({
+        type: transactionType,
+        amount: amountValue,
+        description: descValue,
+        date: dateValue,
+        category: categoryValue
+    });
 
     // Reset fields
     descriptionInput.value = "";
     amountInput.value = "";
     dateInput.value = "";
-   // Reset the category value back to the default "general"
     chooseCategory.value = "general";
 
     toastNotification();
 }
 
+// ✅ Render Transactions Function
+function renderTransactions(filteredArray) {
+    transactionDetails.innerHTML = "";
+    filteredArray.forEach((t) => {
+        const card = document.createElement("div");
+        card.classList.add("transaction-card");
+        card.innerHTML = `
+            <h4 class="${t.type}">
+                Rs.${Math.round(t.amount.toFixed(2))} 
+                <span class="type-text">(${t.type === "income" ? "+ Income" : "- Expense"})</span>
+            </h4>
+            <p>${t.description} | ${t.category.charAt(0).toUpperCase() + t.category.slice(1)}</p>
+            <small>${t.date}</small>
+        `;
+        card.style.borderLeft = t.type === "income" ? "4px solid green" : "4px solid red";
+        card.style.backgroundColor = t.type === "income" ? "#f0fff0" : "#fff0f0";
+        transactionDetails.appendChild(card);
+    });
+}
+
+// ✅ Apply Filters Function
+function applyFilters() {
+    const selectedType = allTransactionDropdown.value;
+    const selectedCategory = transactionCategory.value;
+
+    let filtered = transactions.filter((t) => {
+        const typeMatch =
+            selectedType === "transaction" || // All
+            (selectedType === "forincome" && t.type === "income") ||
+            (selectedType === "forexpense" && t.type === "expense");
+
+        const categoryMatch =
+            selectedCategory === "transaction" || // All
+            t.category === selectedCategory;
+
+        return typeMatch && categoryMatch;
+    });
+
+    renderTransactions(filtered);
+}
+
+// ✅ Event listeners for filters
+allTransactionDropdown.addEventListener("change", applyFilters);
+transactionCategory.addEventListener("change", applyFilters);
+
 // ✅ Add transaction
 addBtn.addEventListener("click", (e) => {
     e.preventDefault();
     transactionDetailsfunc();
+    applyFilters(); // re-render after adding
 });

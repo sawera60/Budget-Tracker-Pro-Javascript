@@ -30,7 +30,6 @@ body {
 }
 
 .toast {
-    /* Basic toast styles for visibility */
     position: absolute;
     top: 20px;
     right: 20px;
@@ -214,14 +213,12 @@ h2 {
 .bottom .right-section .lower {
     width: 100%;
     height: 80%;
-    overflow-y: auto; /* Added for scroll functionality */
+    overflow-y: auto; 
     padding: 0 10px;
 }
 
 
-/* --- FIX 2 & 3: Transaction Card Styling --- */
 
-/* Base style for the card container */
 .transaction-card {
     display: flex;
     flex-direction: column;
@@ -231,34 +228,33 @@ h2 {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Style for the h4 containing the amount/type */
 .transaction-card h4 {
     font-size: 1.1em;
     font-weight: 700;
     margin: 0 0 5px 0;
     padding: 5px;
-    color: white; /* Text color is white */
+    color: white; 
     border-radius: 3px;
-    display: inline-block; /* Makes the background shrink to fit content */
+    display: inline-block; 
 }
 
-/* Specific background color for Income h4 */
+
 .transaction-card h4.income {
-    background-color: #28a745; /* Darker Green */
+    background-color: #28a745; 
 }
 
-/* Specific background color for Expense h4 */
+
 .transaction-card h4.expense {
     background-color: #dc3545; /* Darker Red */
 }
 
-/* Style for the transaction type text within the h4 (to separate it slightly) */
+
 .transaction-card .type-text {
     font-size: 0.9em;
     font-weight: 400;
 }
 
-/* Style for the description and category */
+
 .transaction-card p {
     font-size: 0.9em;
     margin: 3px 0;
@@ -269,4 +265,112 @@ h2 {
 .transaction-card small {
     font-size: 0.7em;
     color: #555;
+}
+
+
+/* --- Tablet Devices (max-width: 1024px) --- */
+@media (max-width: 1024px) {
+    .container {
+        width: 90%; /* Increase container width slightly */
+        max-width: 1000px;
+    }
+
+    .bottom {
+        flex-direction: column; /* Stack left and right sections vertically */
+        height: auto;
+    }
+
+    .bottom .left-section,
+    .bottom .right-section {
+        width: 100%; /* Take up full width */
+        margin-bottom: 20px; /* Add space between stacked sections */
+    }
+
+    .middle {
+        flex-wrap: wrap; /* Allow boxes to wrap */
+        gap: 10px; /* Reduce gap */
+    }
+
+    .middle > div {
+        width: calc(50% - 5px); /* Make income and expense boxes take half width */
+        height: 120px; /* Set a fixed height for balance box if needed */
+    }
+
+    .middle .balance-box {
+        width: 100%; /* Make balance box full width */
+    }
+
+    .bottom .right-section .upper {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .bottom .right-section .upper .btn {
+        display: flex;
+        flex-direction: row; /* Keep selectors in a row for tablet */
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .selectors {
+        width: auto;
+    }
+}
+
+/* --- Mobile Devices (max-width: 600px) --- */
+@media (max-width: 600px) {
+    html, body {
+        align-items: flex-start; /* Start content from the top */
+    }
+
+    .container {
+        width: 95%; /* Use almost full width */
+        margin: 10px auto;
+    }
+
+    .header h1 {
+        font-size: 1.5rem; /* Smaller heading */
+    }
+
+    .middle {
+        flex-direction: column; /* Stack all middle boxes vertically */
+        gap: 15px;
+        margin: 0.5rem 0;
+    }
+
+    .middle > div {
+        width: 100%; /* Full width for all middle boxes */
+        height: 100px; /* A little shorter */
+    }
+
+    .bottom .right-section .upper {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .bottom .right-section .upper h4 {
+        margin-bottom: 10px;
+    }
+
+    .bottom .right-section .upper .btn {
+        flex-direction: column; /* Stack selectors vertically for better tapping */
+        width: 100%;
+    }
+
+    .selectors, .selectors1 {
+        width: 100%; /* Full width for selectors and inputs */
+        margin-bottom: 8px;
+    }
+
+    .bottom .left-section .left-container input {
+        width: 100%; /* Full width for form inputs */
+    }
+
+    .bottom .left-section .left-container .addbtn {
+        width: 100%; /* Full width for add button */
+    }
+
+    .bottom .left-section .left-container .type-btn {
+        width: 50%; /* Keep income/expense buttons half width */
+    }
 }
